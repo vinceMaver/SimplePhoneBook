@@ -10,14 +10,12 @@ namespace SimplePhoneBook.Core.ServiceLayer
 {
     public class PhoneBookEntryService: IPhoneBookEntryService
     {
-        private readonly IGenericRepository<PhoneBook> _phoneBookRepository;
         private readonly IGenericRepository<PhoneBookEntry> _phoneBookEntryRepository;
         IPhoneBookService phoneBookService;
 
         public PhoneBookEntryService(IPhoneBookService phoneBookService, IGenericRepository<PhoneBook> phoneBookRepository, IGenericRepository<PhoneBookEntry> phoneBookEntryRepository)
         {
             this.phoneBookService = phoneBookService;
-            _phoneBookRepository = phoneBookRepository;
             _phoneBookEntryRepository = phoneBookEntryRepository;
         }
 
