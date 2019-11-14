@@ -45,13 +45,6 @@ export class PhoneBookService {
     }), catchError(this.handleError));
   }
 
-  searchPhoneBooks(searchTerm: string) {
-    return this.http.get('/api/sessions/search?search=' + searchTerm).pipe(map((response: Response) => {
-      return response.json();
-    }), catchError(this.handleError));
-
-  }
-
   private handleError(error: Response) {
     return throwError(error.statusText);
   }
