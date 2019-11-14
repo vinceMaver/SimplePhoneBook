@@ -1,0 +1,62 @@
+<div *ngIf="!edit">
+  <div class="modal-header">
+
+    <h4 class="modal-title pull-left" *ngIf="!edit">New Phone Book Entry</h4>
+    <h4 class="modal-title pull-left" *ngIf="edit">Edit Phone Book Entry</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #newPhoneBookEntryForm="ngForm" (ngSubmit)="savePhoneBookEntry(newPhoneBookEntryForm.value)" autocomplete="off" novalidate>
+    <div class="modal-body">
+
+      <div class="form-group" [ngClass]="{'error': newPhoneBookEntryForm.controls.name?.invalid && newPhoneBookEntryForm.controls.name?.touched}">
+        <label for="name">Name:</label>
+        <em class="text-danger" *ngIf="newPhoneBookEntryForm.controls.name?.invalid && (newPhoneBookEntryForm.controls.name?.touched)">Required</em>
+        <input (ngModel)="name" name="name" required id="name" type="text" class="form-control" placeholder="Name..." />
+      </div>
+
+      <div class="form-group" [ngClass]="{'error': newPhoneBookEntryForm.controls.phoneNumber?.invalid && newPhoneBookEntryForm.controls.phoneNumber?.touched}">
+        <label for="name">Phone Number:</label>
+        <em class="text-danger" *ngIf="newPhoneBookEntryForm.controls.phoneNumber?.invalid && (newPhoneBookEntryForm.controls.phoneNumber?.touched)">Required</em>
+        <input (ngModel)="phoneNumber" name="phoneNumber" required id="phoneNumber" type="text" class="form-control" placeholder="Phone Number..." />
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <!--<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>-->
+      <button type="submit" [disabled]="newPhoneBookEntryForm.invalid" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="edit">
+  <div class="modal-header">
+
+    <h4 class="modal-title pull-left" *ngIf="edit">Edit Phone Book Entry</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #newPhoneBookEntryForm="ngForm" (ngSubmit)="savePhoneBookEntry(newPhoneBookEntryForm.value)" autocomplete="off" novalidate>
+    <div class="modal-body">
+      <div class="form-group" [ngClass]="{'error': newPhoneBookEntryForm.controls.name?.invalid && newPhoneBookEntryForm.controls.name?.touched}">
+        <label for="name">Name:</label>
+        <em class="text-danger" *ngIf="newPhoneBookEntryForm.controls.name?.invalid && (newPhoneBookEntryForm.controls.name?.touched)">Required</em>
+        <input [(ngModel)]="phoneBookEntry.name" name="name" required id="name" type="text" class="form-control" placeholder="Name..." />
+      </div>
+
+      <div class="form-group" [ngClass]="{'error': newPhoneBookEntryForm.controls.phoneNumber?.invalid && newPhoneBookEntryForm.controls.phoneNumber?.touched}">
+        <label for="name">Phone Number:</label>
+        <em class="text-danger" *ngIf="newPhoneBookEntryForm.controls.phoneNumber?.invalid && (newPhoneBookEntryForm.controls.phoneNumber?.touched)">Required</em>
+        <input [(ngModel)]="phoneBookEntry.phoneNumber" name="phoneNumber" required id="phoneNumber" type="text" class="form-control" placeholder="Phone Number..." />
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <!--<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>-->
+      <button type="submit" [disabled]="newPhoneBookEntryForm.invalid" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

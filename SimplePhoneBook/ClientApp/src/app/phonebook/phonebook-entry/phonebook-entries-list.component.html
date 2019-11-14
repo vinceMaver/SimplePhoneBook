@@ -1,0 +1,35 @@
+<h1>Phone Books Entries For {{phoneBook?.name}}</h1>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-4">
+    <button type="button" class="btn btn-info" [routerLink]="['/']">Back</button>
+    <button class="btn btn-primary" (click)="addPhoneBookEntry()"><i class="fa fa-plus"></i> Add New Contact</button>
+  </div>
+
+  <div class="col-md-offset-6 col-md-4 form-group">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm" />
+  </div>
+</div>
+
+<table class='table table-striped ' *ngIf="phoneBookEntries">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone Number</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let phoneBookEntry of getPhoneBookEntriesToShow()">
+      <td>{{ phoneBookEntry.name }}</td>
+      <td>{{ phoneBookEntry.phoneNumber }}</td>
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editPhoneBookEntry(phoneBookEntry)">Edit</button>
+        <button type="button" class="btn btn-danger" (click)="deletePhoneBookEntry(phoneBookEntry)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span *ngIf="phoneBookEntries?.length == 0"><em>No contacts to display</em></span>
